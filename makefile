@@ -139,6 +139,7 @@ sync:
     --include "IsPrime2.c++"                 \
     --include "IsPrime2.h"                   \
     --include "Incr.c++"                     \
+    --include "Incr.h"                       \
     --include "Equal.c++"                    \
     --exclude "*"                            \
     ../../exercises/c++/ exercises
