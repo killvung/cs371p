@@ -119,6 +119,7 @@ sync:
     --include "Assertions.c++"               \
     --include "Exceptions.c++"               \
     --include "Variables.c++"                \
+    --include "Arguments.c++"                \
     --exclude "*"                            \
     ../../examples/c++/ examples
 	@rsync -r -t -u -v --delete              \

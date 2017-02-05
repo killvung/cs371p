@@ -1,7 +1,10 @@
 .DEFAULT_GOAL := test
 
 FILES :=                \
-    Hello
+    Hello               \
+    Exceptions          \
+    Variables           \
+    Arguments
 
 ifeq ($(shell uname), Darwin)                                           # Apple
     CXX          := g++
