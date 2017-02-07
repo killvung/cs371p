@@ -72,6 +72,7 @@ else                                                                    # UTCS
     CLANG-FORMAT := clang-format-3.8
 endif
 
+.PHONY: collatz-tests
 collatz-tests:
 	git clone https://github.com/cs371pt-spring-2017/collatz-tests.git
 
