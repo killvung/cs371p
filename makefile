@@ -142,6 +142,8 @@ sync:
     --include "Incr.c++"                     \
     --include "Incr.h"                       \
     --include "Equal.c++"                    \
+    --include "Copy.c++"                     \
+    --include "Fill.c++"                     \
     --exclude "*"                            \
     ../../exercises/c++/ exercises
 	@rsync -r -t -u -v --delete              \
