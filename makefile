@@ -142,6 +142,7 @@ sync:
     --include "Incr.c++"                     \
     --include "Incr.h"                       \
     --include "Equal.c++"                    \
+    --include "Equal.h"                      \
     --include "Copy.c++"                     \
     --include "Fill.c++"                     \
     --exclude "*"                            \
