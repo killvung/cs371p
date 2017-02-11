@@ -5,9 +5,7 @@
 // http://en.cppreference.com/w/cpp/algorithm/copy
 
 #include <algorithm>  // copy, equal
-#include <cassert>    // assert
 #include <functional> // function
-#include <iostream>   // cout, endl
 #include <list>       // list
 #include <vector>     // vector
 

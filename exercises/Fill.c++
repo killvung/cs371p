@@ -5,9 +5,7 @@
 // http://en.cppreference.com/w/cpp/algorithm/fill
 
 #include <algorithm>  // equal, fill
-#include <cassert>    // assert
 #include <functional> // function
-#include <iostream>   // cout, endl
 #include <vector>     // vector
 
 #include "gtest/gtest.h"
