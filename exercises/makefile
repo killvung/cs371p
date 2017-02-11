@@ -8,7 +8,9 @@ FILES :=          \
     IsPrime1      \
     IsPrime2      \
     Incr          \
-    Equal
+    Equal         \
+    Copy          \
+    Fill
 
 ifeq ($(shell uname), Darwin)                                           # Apple
     CXX          := g++
