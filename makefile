@@ -120,6 +120,7 @@ sync:
     --include "Exceptions.c++"               \
     --include "Variables.c++"                \
     --include "Arguments.c++"                \
+    --include "Iterators.c++"                \
     --exclude "*"                            \
     ../../examples/c++/ examples
 	@rsync -r -t -u -v --delete              \
@@ -147,6 +148,8 @@ sync:
     --include "Copy.h"                       \
     --include "Fill.c++"                     \
     --include "Fill.h"                       \
+    --include "AllOf.c++"                    \
+    --include "AllOf.h"                      \
     --exclude "*"                            \
     ../../exercises/c++/ exercises
 	@rsync -r -t -u -v --delete              \

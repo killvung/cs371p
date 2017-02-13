@@ -4,7 +4,8 @@ FILES :=                \
     Hello               \
     Exceptions          \
     Variables           \
-    Arguments
+    Arguments           \
+    Iterators
 
 ifeq ($(shell uname), Darwin)                                           # Apple
     CXX          := g++
