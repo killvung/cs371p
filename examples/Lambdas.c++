@@ -27,6 +27,7 @@ int main () {
     cout << "Arguments.c++" << endl;
 
     assert(f(&my_plus,                          2, 3, 4) == 35); // (2+3) * (3+4)
+    assert(f(plus<int>(),                       2, 3, 4) == 35); // (2+3) * (3+4)
     assert(f([] (int x, int y) {return x + y;}, 2, 3, 4) == 35); // (2+3) * (3+4)
 
     {
