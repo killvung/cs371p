@@ -120,6 +120,7 @@ sync:
     --include "Exceptions.c++"               \
     --include "Variables.c++"                \
     --include "Arguments.c++"                \
+    --include "Lambdas.c++"                  \
     --include "Iterators.c++"                \
     --exclude "*"                            \
     ../../examples/c++/ examples

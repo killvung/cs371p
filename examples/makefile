@@ -5,6 +5,7 @@ FILES :=                \
     Exceptions          \
     Variables           \
     Arguments           \
+    Lambdas             \
     Iterators
 
 ifeq ($(shell uname), Darwin)                                           # Apple
