@@ -48,4 +48,20 @@ iterator: bidirectional
 forward_list
 singly-linked list
 iterator: forward
+
+set (TreeSet)
+O(log n)
+iterator: bidirectional
+
+unordered_set (HashSet)
+O(1)
+iterator: bidirectional
+
+map (TreeMap)
+O(1) on keys
+iterator: bidirectional
+
+unordered_map (HashMap)
+O(1) on keys
+iterator: bidirectional
 */
