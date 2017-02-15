@@ -150,6 +150,7 @@ sync:
     --include "Fill.c++"                     \
     --include "Fill.h"                       \
     --include "AllOf.c++"                    \
+    --include "RMSE.c++"                     \
     --exclude "*"                            \
     ../../exercises/c++/ exercises
 	@rsync -r -t -u -v --delete              \
