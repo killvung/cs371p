@@ -122,6 +122,8 @@ sync:
     --include "Arguments.c++"                \
     --include "Lambdas.c++"                  \
     --include "Iterators.c++"                \
+    --include "Consts.c++"                   \
+    --include "Classes.c++"                  \
     --exclude "*"                            \
     ../../examples/c++/ examples
 	@rsync -r -t -u -v --delete              \
@@ -151,6 +153,9 @@ sync:
     --include "Fill.h"                       \
     --include "AllOf.c++"                    \
     --include "RMSE.c++"                     \
+    --include "Complex.c++"                  \
+    --include "RangeIterator.c++"            \
+    --include "Range.c++"                    \
     --exclude "*"                            \
     ../../exercises/c++/ exercises
 	@rsync -r -t -u -v --delete              \

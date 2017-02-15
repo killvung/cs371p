@@ -6,7 +6,9 @@ FILES :=                \
     Variables           \
     Arguments           \
     Lambdas             \
-    Iterators
+    Iterators           \
+    Consts              \
+    Classes
 
 ifeq ($(shell uname), Darwin)                                           # Apple
     CXX          := g++

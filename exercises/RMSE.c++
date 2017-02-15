@@ -42,6 +42,6 @@ TEST_P(RMSEListFixture, test_3) {
 	ASSERT_FLOAT_EQ(2, GetParam()(begin(x), end(x), begin(y), 0.0));}
 
 TEST_P(RMSEListFixture, test_4) {
-    const list<double>   x = {2, 3, 4};
-    const vector<double> y = {4, 3, 2};
-	ASSERT_FLOAT_EQ(1.6329932, GetParam()(begin(x), end(x), begin(y), 0.0));}
+    const list<double>   x = {1, 2, 3, 4, 5};
+    const vector<double> y = {2, 5, 3, 1, 4};
+	ASSERT_FLOAT_EQ(2, GetParam()(begin(x), end(x), begin(y), 0.0));}
