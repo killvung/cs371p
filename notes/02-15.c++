@@ -2,13 +2,8 @@
 // Wed, 15 Feb
 // -----------
 
-II: ==, !=, *, ++
-
 plus<int> x;
 cout << x(2, 3); // 5
-
-int
-2
 
 bool foo (int) {
     ...}
