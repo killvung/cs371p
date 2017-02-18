@@ -140,14 +140,12 @@ clean:
 	rm -f  *.gcno
 	rm -f  *.gcov
 	rm -f  *.plist
-	rm -f  Collatz.log
 	rm -f  Doxyfile
 	rm -f  RunCollatz
 	rm -f  RunCollatz.tmp
 	rm -f  TestCollatz
 	rm -f  TestCollatz.tmp
 	rm -rf *.dSYM
-	rm -rf html
 	rm -rf latex
 
 config:
@@ -158,6 +156,11 @@ format:
 	$(CLANG-FORMAT) -i Collatz.h
 	$(CLANG-FORMAT) -i RunCollatz.c++
 	$(CLANG-FORMAT) -i TestCollatz.c++
+
+scrub:
+	make clean
+	rm -f  Collatz.log
+	rm -rf html
 
 status:
 	make clean
