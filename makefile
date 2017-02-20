@@ -154,6 +154,7 @@ sync:
     --include "AllOf.c++"                    \
     --include "AllOf.h"                      \
     --include "RMSE.c++"                     \
+    --include "RMSE.h"                       \
     --include "RangeIterator.c++"            \
     --include "Range.c++"                    \
     --exclude "*"                            \
