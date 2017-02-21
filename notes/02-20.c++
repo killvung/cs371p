@@ -1,64 +1,49 @@
 // -----------
-// Fri, 17 Feb
+// Mon, 20 Feb
 // -----------
 
-int i;
-i = 2;
-++i;
-cout << i; // 3
+/*
+Java exhibits refinement overriding in constructors
+nowhere else
 
-const int ci;     // not ok
-const int ci = 3;
-++ci;             // not ok
+C++ exhibits refinement overriding in constructors and destructors
+nowhere else
 
-      int i  = 2;
-const int ci = 3;
-int* p;
-p = &i;
-++*p;
-cout << i; // 4
-p = &ci;   // not ok
+In C++, given a base class, A, and a derived class, B:
+the order of construction is: A B
+the order of destruction  is: B A
+*/
 
-      int  i  = 2;
-const int  ci = 3;
-const int  cj = 4;
-const int* pc;
-pc = &ci;
-pc = &cj;
-++*pc;       // not ok
-pc = &i;
-cout << *pc; // 2
-++i;
-cout << *pc; // 3
+template <typename II1, typename II2, typename T>
+T rmse (II1 b, II1 e, II2 c, T v) {
+    int s = 0;
+    while (b != e) {
+        v += (*b - *c) * (*b - *c);
+        ++b;
+        ++c;
+        ++s;}
+    return sqrt(v / s);}
 
-      int  i  = 2;
-const int  ci = 3;
-int* const cp = &ci; // not ok
-int* const cp = &i;
-++*cp;
-++cp;               // not ok
+/*
+distance() is O(1) with a random-access iterator
+distance() is O(n) with a weaker iterator
 
-      int        i   = 2;
-const int        ci  = 3;
-const int* const cpc = &ci;
-++*cpc;                     // not ok
-++cpc;                      // not ok
+transform() comes in two forms:
 
-      int  i  = 2;
-const int  ci = 3;
-      int& r;       // not ok
-      int& r  = ci; // not ok
-      int& r  = i;
-++r;
+one form takes an input sequence, an output sequence, and a unary function
+it calls the unary function on elements of the input sequence and
+outputs the results to the output sequence
 
-// T& is most like T* const
+the other form taks two input sequences, an output sequence, and a binary function
+it calls the binary function on the corresponding elements of the two input sequences and
+outputs the results to the output sequence
 
-      int  i  = 2;
-const int  ci = 3;
-const int& r;       // not ok
-const int& r  = ci;
-++r;                // not ok
-const int& s  = i;
-++s;                // not ok
+accumulate() comes in two forms:
 
-// const T& is most like const T* const
+one form takes an input sequence and a seed
+it invokes addition on the seed and elements of the sequence
+(e.g. s + a0 + a1 + a2 ...)
+
+the other form takes an input sequence, a seed, and a binary function
+it invokes the binary function on the seed and elements of the sequence
+*/
