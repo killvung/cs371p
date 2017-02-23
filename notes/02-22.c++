@@ -6,7 +6,7 @@
 Java has FOUR access privileges:
 
 public
-package (default)
+package   (default)
 protected
 private
 */
@@ -14,17 +14,17 @@ private
 /*
 C++ has THREE access privileges:
 
-public (default with "struct")
+public    (default with "struct")
 protected
-private (default with "class")
+private   (default with "class")
 */
 
 /*
 this definition of A requires T to have:
 
 default constructor
-copy constructor
-copy assignment operator
+copy    constructor
+copy    assignment operator
 */
 
 template <typename T>
@@ -43,7 +43,7 @@ struct A {
 this definition of A requires T to have:
 
 default constructor
-copy constructor
+copy    constructor
 
 and uses of a member initialization list
 member initialization lists can only be used in constructors
