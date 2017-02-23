@@ -24,7 +24,7 @@ this definition of A requires T to have:
 
 default constructor
 copy constructor
-assignment operator
+copy assignment operator
 */
 
 template <typename T>
@@ -42,6 +42,7 @@ struct A {
 /*
 this definition of A requires T to have:
 
+default constructor
 copy constructor
 
 and uses of a member initialization list
