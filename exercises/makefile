@@ -10,7 +10,9 @@ FILES :=          \
     Incr          \
     Equal         \
     Copy          \
-    Fill
+    Fill          \
+    AllOf         \
+    RMSE
 
 ifeq ($(shell uname), Darwin)                                           # Apple
     CXX          := g++
