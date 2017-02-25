@@ -2,20 +2,13 @@
 // RangeIterator.c++
 // -----------------
 
+#include <algorithm> // equal
+
 #include "gtest/gtest.h"
 
 #include "RangeIterator.h"
 
 using namespace std;
-
-template <typename II1, typename II2>
-bool my_equal (II1 b, II1 e, II2 c) {
-    while (b != e) {
-        if (*b != *c)
-            return false;
-        ++b;
-        ++c;}
-    return true;}
 
 TEST(RangeIteratorFixture, test_1) {
     const Range_Iterator<int> b = 2;
@@ -44,7 +37,7 @@ TEST(RangeIteratorFixture, test_3) {
     ASSERT_EQ(b, e);}
 
 TEST(RangeIteratorFixture, test_4) {
-    ASSERT_TRUE(my_equal(Range_Iterator<int>(2), Range_Iterator<int>(5), begin({2, 3, 4})));}
+    ASSERT_TRUE(equal(Range_Iterator<int>(2), Range_Iterator<int>(5), begin({2, 3, 4})));}
 
 /*
 % RangeIterator
