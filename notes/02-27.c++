@@ -27,8 +27,8 @@ struct A {
         ~A ()
             {} // T's destructor
 
-        bool operator == (const A& rhs) {
-            return (_v == rhs._v);}       // T's equality operator
+        bool operator == (const A& rhs) const {
+            return (_v == rhs._v);}             // T's equality operator
 
 void f (A y) {
     ...}
