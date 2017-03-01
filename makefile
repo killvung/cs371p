@@ -156,6 +156,7 @@ sync:
     --include "RMSE.c++"                     \
     --include "RMSE.h"                       \
     --include "RangeIterator.c++"            \
+    --include "RangeIterator.h"              \
     --include "Range.c++"                    \
     --exclude "*"                            \
     ../../exercises/c++/ exercises
