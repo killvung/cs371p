@@ -2,22 +2,13 @@
 // Range.c++
 // ---------
 
-#include <iostream>  // cout, endl
+#include <algorithm> // equal
 
 #include "gtest/gtest.h"
 
 #include "Range.h"
 
 using namespace std;
-
-template <typename II1, typename II2>
-bool my_equal (II1 b, II1 e, II2 c) {
-    while (b != e) {
-        if (*b != *c)
-            return false;
-        ++b;
-        ++c;}
-    return true;}
 
 TEST(RangeFixture, test_1) {
     const Range<int> x(2, 2);
@@ -49,7 +40,7 @@ TEST(RangeFixture, test_3) {
 
 TEST(RangeFixture, test_4) {
     Range<int> x(2, 5);
-    ASSERT_TRUE(my_equal(begin(x), end(x), begin({2, 3, 4})));}
+    ASSERT_TRUE(equal(begin(x), end(x), begin({2, 3, 4})));}
 
 /*
 % Range
