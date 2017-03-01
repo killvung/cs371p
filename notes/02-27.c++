@@ -67,6 +67,9 @@ class Range_Iterator {
             _v (v)
             {}
 
+        bool operator = (const Range_Iterator& rhs) const {
+            return _v == rhs._v;}
+
         T operator * () {
             return _v;}
 
