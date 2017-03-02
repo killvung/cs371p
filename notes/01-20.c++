@@ -19,7 +19,7 @@ while (i != s) {
     i++;}
 
 /*
-i++ is slower than i++ for any type
+i++ is slower than ++i for any type
 for builtin types the compiler will convert i++ to ++i
 for user types the compiler is not allowed to do that
 it's best to get in the habit of always using pre-increment
