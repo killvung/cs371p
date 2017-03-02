@@ -58,7 +58,7 @@ O(1)
 iterator: bidirectional
 
 map (TreeMap)
-O(1) on keys
+O(log n) on keys
 iterator: bidirectional
 
 unordered_map (HashMap)
