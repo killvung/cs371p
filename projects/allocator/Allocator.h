@@ -73,15 +73,6 @@ class my_allocator {
             // <your code>
             return true;}
 
-        /**
-         * O(1) in space
-         * O(1) in time
-         * https://code.google.com/p/googletest/wiki/AdvancedGuide#Private_Class_Members
-         */
-        FRIEND_TEST(TestAllocator2, index);
-        int& operator [] (int i) {
-            return *reinterpret_cast<int*>(&a[i]);}
-
     public:
         // ------------
         // constructors
@@ -156,6 +147,13 @@ class my_allocator {
         void destroy (pointer p) {
             p->~T();               // this is correct
             assert(valid());}
+
+        /**
+         * O(1) in space
+         * O(1) in time
+         */
+        int& operator [] (int i) {
+            return *reinterpret_cast<int*>(&a[i]);}
 
         /**
          * O(1) in space
