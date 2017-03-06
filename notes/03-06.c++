@@ -1,3 +1,7 @@
+// -----------
+// Mon,  6 Mar
+// -----------
+
 int s = ...;
 T   v = ...;
 
@@ -13,3 +17,13 @@ loop                       // T(T), s times
 ...
 loop                       // ~T(), s times
     x.destroy(&a[i]);
+x.deallocate(a);           // <nothing>
+
+my_allocator<double, 100> x;
+T* a = x.allocate(5);      // <nothing>
+loop                       // T(T), s times
+    x.construct(&a[i], v);
+...
+loop                       // ~T(), s times
+    x.destroy(&a[i]);
+x.deallocate(a);           // <nothing>
