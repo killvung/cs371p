@@ -174,6 +174,7 @@ sync:
 	@rsync -r -t -u -v --delete              \
     --include "Allocator.h"                  \
     --include "RunAllocator.c++"             \
+    --include "RunAllocator.in"              \
     --include "RunAllocator.out"             \
     --include "TestAllocator.c++"            \
     --include "TestAllocator.out"            \
