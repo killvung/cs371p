@@ -8,7 +8,8 @@ FILES :=                \
     Lambdas             \
     Iterators           \
     Consts              \
-    Classes
+    Classes             \
+    Arrays
 
 ifeq ($(shell uname), Darwin)                                           # Apple
     CXX          := g++

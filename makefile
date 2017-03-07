@@ -124,6 +124,7 @@ sync:
     --include "Iterators.c++"                \
     --include "Consts.c++"                   \
     --include "Classes.c++"                  \
+    --include "Arrays.c++"                   \
     --exclude "*"                            \
     ../../examples/c++/ examples
 	@rsync -r -t -u -v --delete              \
