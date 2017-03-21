@@ -1,65 +1,51 @@
 // -----------
-// Wed,  8 Mar
+// Mon, 20 Mar
 // -----------
 
+class string {
+    friend bool operator == (const string& lhs, const string& rhs) {
+        ...}
+
+    friend ostream& operator << (ostream& lhs, const string& rhs) {
+        ...}
+
+    private:
+        ...
+    public:
+        string (const char*) {
+            ...}};
+
+int main () {
+    string s("abc");                 // always works
+    string t = "def";                // only works if NOT explicit
+
+    cout << (s == t)        << endl; // false
+    cout << s.operator==(t) << endl;
+
+    cout << (s == "abc")         << endl; // true
+    cout << s.operator==("abc")  << endl;
+
+    cout << ("abc" == s)         << endl; // not ok
+    cout << "abc".operator==(s); << endl; // not ok, can NOT be a method
+
+    cout << operator==(s, t)     << endl; // make == a friend function
+    cout << operator==(s, "abc") << endl;
+    cout << operator==("abc", s) << endl;
+
+    cout << s           << endl;
+    cout.operator<<(s)  << endl; // not ok, can NOT be a method
+    operator<<(cout, x) << endl; // make << a friend function, too
+
 /*
-In the Java library, class Stack EXTENDS class Vector.
-
-That was a mistake, since clients of Stack can invoke any Vector method on a Stack.
-
-The correct design would have been for Stack to CONTAIN Vector.
-
-That design pattern is called the Adapter Pattern.
-
-C++'s class stack CONTAINS a generic backing container.
-
-That backing container can be C++'s vector, deque, or list.
-
-But, it can also be a user-defined backing container, if the correct API is provided.
+rules of C++ friend
+    If I declare YOU to be friend,
+    I have to be a class
+    YOU can be a class, a method, or a function
+    friendship is not symmetric
+    friendship is not transitive
 */
 
 struct A {
-    A (int) {}};
-
-void f (A y) {}
-
-int main () {
-    A x(2);  // always ok
-    A x = 2; // only ok without explicit
-    f(x);    // A's copy constructor
-    f(A(2)); // A's copy constructor
-    f(2);    // A's copy constructor
-    return 0;}
-
-
-
-struct string {
-    string (const char*) {...}
-    ...};
-
-void g (string t) {}
-
-int main () {
-    string s("abc")
-    string s = "abc";
-    g(s);             // string's copy constructor
-    g(string("abc")); // string's copy constructor
-    g("abc");         // string's copy constructor
-    return 0;}
-
-
-
-template <typename T>
-struct vector {
-    explicit vector (int) {...}
-    ...};
-
-void h (vector<int> y) {}
-
-int main () {
-    vector<int> x(10000);
-    vector<int> x = 10000; // not ok
-    h(x);                  // vector's copy constructor
-    h(vector<int>(10000)); // vector's copy constructor
-    h(10000);              // not ok
-    return 0;}
+       A          (const A&) = default;
+       ~A         ()         = default;
+    A& operator = (const A&) = default;};
