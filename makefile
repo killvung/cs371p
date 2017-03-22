@@ -161,6 +161,7 @@ sync:
     --include "Range.c++"                    \
     --include "Range.h"                      \
     --include "Vector1.c++"                  \
+    --include "Vector2.c++"                  \
     --exclude "*"                            \
     ../../exercises/c++/ exercises
 	@rsync -r -t -u -v --delete              \
