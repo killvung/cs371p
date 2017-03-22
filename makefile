@@ -160,6 +160,7 @@ sync:
     --include "RangeIterator.h"              \
     --include "Range.c++"                    \
     --include "Range.h"                      \
+    --include "Vector1.c++"                  \
     --exclude "*"                            \
     ../../exercises/c++/ exercises
 	@rsync -r -t -u -v --delete              \
