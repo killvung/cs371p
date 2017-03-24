@@ -1,49 +1,51 @@
 // -----------
-// Wed, 20 Mar
+// Mon, 20 Mar
 // -----------
 
-B<int> x = 2; // not ok, with explicit
+class string {
+    friend bool operator == (const string& lhs, const string& rhs) {
+        ...}
 
-T i = 2;
-T j = i; // ok with most types, but not arrays on the stack
+    friend ostream& operator << (ostream& lhs, const string& rhs) {
+        ...}
 
-int* p;
+    private:
+        ...
+    public:
+        string (const char*) {
+            ...}};
 
-if (...)
-    p = new int;
-else
-    p = new int[10];
+int main () {
+    string s("abc");                 // always works
+    string t = "def";                // only works if NOT explicit
 
-delete ? p;
+    cout << (s == t)        << endl; // false
+    cout << s.operator==(t) << endl;
+
+    cout << (s == "abc")         << endl; // true
+    cout << s.operator==("abc")  << endl;
+
+    cout << ("abc" == s)         << endl; // not ok
+    cout << "abc".operator==(s); << endl; // not ok, can NOT be a method
+
+    cout << operator==(s, t)     << endl; // make == a friend function
+    cout << operator==(s, "abc") << endl;
+    cout << operator==("abc", s) << endl;
+
+    cout << s           << endl;
+    cout.operator<<(s)  << endl; // not ok, can NOT be a method
+    operator<<(cout, x) << endl; // make << a friend function, too
 
 /*
-possible errors related to delete
-
-1. not delete
-2. getting the [] wrong
-3. deleting too early
-4. deleting the wrong address
-5. deleting more than once
+rules of C++ friend
+    If I declare YOU to be friend,
+    I have to be a class
+    YOU can be a class, a method, or a function
+    friendship is not symmetric
+    friendship is not transitive
 */
 
-int* f () {
-    int a[] = {...};
-    ...
-    return a; // not ok
-
-int* g () {
-    int* a = new int[...];
-    ...
-    return a;}
-
-int s;
-cin >> s;
-int a[s]; // not ok
-
-int s;
-cin >> s;
-int* a = new int[s];
-
-int s;
-cin >> s;
-vector<int> x(s, v);
+struct A {
+       A          (const A&) = default;
+       ~A         ()         = default;
+    A& operator = (const A&) = default;};

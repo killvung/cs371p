@@ -194,6 +194,8 @@ test:
 	cd projects/collatz; make test
 	@echo
 	cd projects/allocator; make test
+	@echo
+	cd projects/voting; make test
 
 versions:
 	which make
