@@ -1,8 +1,12 @@
-// -------------------------------------
-// projects/allocator/TestAllocator1.c++
+// -----------------------------------------
+// projects/c++/allocator/TestAllocator1.c++
 // Copyright (C) 2017
 // Glenn P. Downing
-// -------------------------------------
+// -----------------------------------------
+
+// https://github.com/google/googletest
+// https://github.com/google/googletest/blob/master/googletest/docs/Primer.md
+// https://github.com/google/googletest/blob/master/googletest/docs/AdvancedGuide.md
 
 // --------
 // includes

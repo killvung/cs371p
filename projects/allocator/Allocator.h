@@ -1,8 +1,8 @@
-// ------------------------------
-// projects/allocator/Allocator.h
+// ----------------------------------
+// projects/c++/allocator/Allocator.h
 // Copyright (C) 2017
 // Glenn P. Downing
-// ------------------------------
+// ----------------------------------
 
 #ifndef Allocator_h
 #define Allocator_h
