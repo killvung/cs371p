@@ -9,7 +9,8 @@
 // --------
 
 #include <cassert>  // assert
-#include <iostream> // cin, cout
+#include <fstream>  // ifstream
+#include <iostream> // cout, endl, getline
 
 #include "Allocator.h"
 
@@ -21,8 +22,9 @@ int main () {
     using namespace std;
     // read  RunAllocator.in
     // write RunAllocator.out
-    cout << "-40 944"     << endl;
-    cout << "-40 -24 912" << endl;
-    cout << "40 -24 912"  << endl;
-    cout << "72 -24 880"  << endl;
+
+    ifstream fin("RunAllocator.out");
+    char a[80];
+    while (fin.getline(a, 80))
+        cout << a << endl;
     return 0;}
