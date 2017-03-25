@@ -165,7 +165,7 @@ status:
 	git remote -v
 	git status
 
-test: html Allocator.log RunCollatz.tmp TestAllocator.tmp allocator-tests
+test: html Allocator.log RunAllocator.tmp TestAllocator.tmp allocator-tests
 	ls -al
 	make check
 
