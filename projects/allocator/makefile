@@ -75,7 +75,7 @@ endif
 allocator-tests:
 	git clone https://github.com/cs371pt-spring-2017/allocator-tests.git
 
-html: Doxyfile Allocator.h
+html: Doxyfile
 	doxygen Doxyfile
 
 Allocator.log:
@@ -89,7 +89,7 @@ Doxyfile:
 # EXTRACT_PRIVATE        = YES
 # EXTRACT_STATIC         = YES
 
-RunAllocator: Allocator.h RunAllocator.c++
+RunAllocator:
 	$(CXX) $(CXXFLAGS) RunAllocator.c++ -o RunAllocator
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          RunAllocator.c++  --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze RunAllocator.c++  --
@@ -99,7 +99,7 @@ RunAllocator.tmp: RunAllocator
 	./RunAllocator < RunAllocator.in > RunAllocator.tmp
 	diff RunAllocator.tmp RunAllocator.out
 
-TestAllocator: Allocator.h TestAllocator.c++
+TestAllocator:
 	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) TestAllocator.c++ -o TestAllocator $(LDFLAGS)
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          TestAllocator.c++ --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze TestAllocator.c++ --
@@ -165,7 +165,7 @@ status:
 	git remote -v
 	git status
 
-test: html Allocator.log TestAllocator.tmp allocator-tests
+test: html Allocator.log RunCollatz.tmp TestAllocator.tmp allocator-tests
 	ls -al
 	make check
 

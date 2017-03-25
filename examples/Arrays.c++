@@ -170,7 +170,7 @@ int main () {
     assert(a[0].f() == "A::f");
 //  assert(a[1].f() == "A::f"); // undefined
 //  delete [] a;                // undefined
-    B* b = static_cast<B*>(a);
+    B* b = static_cast<B*>(a);  // clang-check warning: Potential leak of memory pointed to by 'a'
     assert(b[1].f() == "B::f");
     delete [] b;                // ~B::B() and ~A::A()
     }

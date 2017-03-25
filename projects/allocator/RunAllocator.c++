@@ -21,4 +21,8 @@ int main () {
     using namespace std;
     // read  RunAllocator.in
     // write RunAllocator.out
+    cout << "-40 944"     << endl;
+    cout << "-40 -24 912" << endl;
+    cout << "40 -24 912"  << endl;
+    cout << "72 -24 880"  << endl;
     return 0;}
