@@ -73,6 +73,7 @@ int main () {
     // read  RunDarwin.in
     // write RunDarwin.out
 
+    // replace!
     ifstream fin("RunDarwin.out");
     char a[80];
     while (fin.getline(a, 80))

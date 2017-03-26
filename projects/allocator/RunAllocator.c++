@@ -23,6 +23,7 @@ int main () {
     // read  RunAllocator.in
     // write RunAllocator.out
 
+    // replace!
     ifstream fin("RunAllocator.out");
     char a[80];
     while (fin.getline(a, 80))
