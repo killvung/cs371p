@@ -205,7 +205,7 @@ test:
 	@echo
 	cd projects/allocator; make test
 	@echo
-	cd projects/darwin; make test
+	cd projects/darwin;  make test
 
 versions:
 	which make
