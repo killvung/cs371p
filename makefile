@@ -175,6 +175,16 @@ sync:
     --exclude "*"                            \
     ../../projects/c++/collatz/ projects/collatz
 	@rsync -r -t -u -v --delete              \
+    --include "RunVoting.c++"                \
+    --include "RunVoting.in"                 \
+    --include "RunVoting.out"                \
+    --include "TestVoting.c++"               \
+    --include "TestVoting.out"               \
+    --include "Voting.c++"                   \
+    --include "Voting.h"                     \
+    --exclude "*"                            \
+    ../../projects/c++/voting/ projects/voting
+	@rsync -r -t -u -v --delete              \
     --include "Allocator.h"                  \
     --include "RunAllocator.c++"             \
     --include "RunAllocator.in"              \
@@ -202,6 +212,8 @@ test:
 	cd exercises; make test
 	@echo
 	cd projects/collatz; make test
+	@echo
+	cd projects/voting; make test
 	@echo
 	cd projects/allocator; make test
 	@echo

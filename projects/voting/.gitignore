@@ -1,0 +1,13 @@
+.DS_Store
+*.dSYM
+*.gcda
+*.gcno
+*.gcov
+*.plist
+darwin-tests
+Doxyfile
+Icon?
+RunVoting
+RunVoting.tmp
+TestVoting
+TestVoting.tmp
