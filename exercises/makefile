@@ -12,7 +12,8 @@ FILES :=          \
     Copy          \
     Fill          \
     AllOf         \
-    RMSE
+    RMSE          \
+    Vector1
 
 ifeq ($(shell uname), Darwin)                                           # Apple
     CXX          := g++
