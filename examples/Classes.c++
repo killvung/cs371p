@@ -5,75 +5,93 @@
 #include <cassert>  // assert
 #include <iostream> // cout, endl
 
-using namespace std;
-
-template <typename T>
 class A {
-    friend bool operator == (const A& lhs, const A& rhs) {
-        cout << "==(const A&, const A&) ";
-        return lhs._v == rhs._v;}
-
     private:
-        T _v;
+        static  int _cv;
+                int _iv;
+        mutable int _iw;
 
     public:
-        A (const T& v) :
-                _v (v) {
-            cout << "A(const T&) ";}
+        A () {
+            _iv = 0;
+            _iw = 1;
+            cm();
+            im();
+            cim();
+                  A* p = this;
+            const A* q = this;
+            assert(p == this);
+            assert(q == this);}
 
-        A (const A& rhs) :
-                _v (rhs._v) {
-            cout << "A(const A&) ";}
+        static void cm () {
+            ++_cv;
+//          ++_iv;       // error: invalid use of member 'A::_iv' in static member function
+//          ++_iw;       // error: invalid use of member 'A::_iv' in static member function
+//          im();        // error: cannot call member function 'void A::im()' without object
+//          cim();       // error: cannot call member function 'void A::cim() const' without object
+//          A* p = this; // error: ‘this’ is unavailable for static member functions
+            }
 
-        ~A () {
-            cout << "~A()" << " ";}
+        void im () {
+            ++_cv;
+            ++_iv;
+            ++_iw;
+            cm();
+            cim();
+                  A* p = this;
+            const A* q = this;
+            assert(p == this);
+            assert(q == this);}
 
-        A& operator = (const A& rhs) {
-            _v = rhs._v;
-            cout << "=(const A&) ";
-            return *this;}};
+        void cim () const {
+            ++_cv;
+//          ++_iv;                // error: increment of data-member 'A::_iv' in read-only structure
+            ++_iw;
+            cm();
+//          im();                 // error: no matching function for call to 'A::im() const'
+//                A* p = this;    // error: invalid conversion from 'const A* const' to 'A*'
+            const A* q = this;
+            assert(q == this);}};
+
+int A::_cv;
 
 int main () {
-    cout << "Classes.c++" << endl << endl;
+    using namespace std;
+    cout << "Classes.c++" << endl;
+
+    A::cm();
+//  A::im();  // error: cannot call member function 'void A::im()' without object
+//  A::cim(); // error: cannot call member function 'void A::cim() const' without object
 
     {
-    cout << "T constructor" << endl;
-    A<int> x = 2;
-    assert(x == 2);
+    A x;
+    x.cm();
+    x.im();
+    x.cim();
     }
-    cout << endl << endl;
 
     {
-    cout << "copy constructor" << endl;
-    A<int> x = 2;
-    A<int> y = x;
-    assert(y == 2);
+    A* p = new A;
+    p->cm();
+    p->im();
+    p->cim();
+    delete p;
     }
-    cout << endl << endl;
 
     {
-    cout << "copy assignment operator" << endl;
-    A<int> x = 2;
-    A<int> y = 3;
-    y = x;
-    assert(y == 2);
+    const A x;
+    x.cm();
+//  x.im();    // error: no matching function for call to 'A::im() const'
+    x.cim();
     }
-    cout << endl << endl;
+
+    {
+    const A* p = new A;
+    p->cm();
+//  p->im();            // error: no matching function for call to 'A::im() const'
+    p->cim();
+    delete p;
+    }
 
     cout << "Done." << endl;
     return 0;}
-
-/*
-Classes.c++
-
-T constructor
-A(const T&) A(const T&) ==(const A&, const A&) ~A() ~A()
-
-copy constructor
-A(const T&) A(const A&) A(const T&) ==(const A&, const A&) ~A() ~A() ~A()
-
-copy assignment operator
-A(const T&) A(const T&) =(const A&) A(const T&) ==(const A&, const A&) ~A() ~A() ~A()
-
-Done.
-*/
