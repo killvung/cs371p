@@ -5,14 +5,17 @@
 template <typename T>
 class vector {
     private:
+        allocator<T> _a;
         T* _b;
         T* _e;
 
     public:
        vector (size_t s = 0, const T& v = T()) :
-                _b ((s == 0) ? nullptr : new T[s]),
+                _a (),
+                _b ((s == 0) ? nullptr : _a.allocate(s))
                 _e (_b + s) {
-            fill(_b, _e, v);}
+            for (T* i = _b; i != _e; ++i)
+                _a.construct(i, v);}
 
         size_t size () const {
             return _e - _b;}
@@ -36,29 +39,35 @@ class vector {
             return *(_b + i);}
 
         vector (const vector& rhs) {
+/*
+            _b = nullptr;
+            *this = rhs;
+*/
             _b = new T[rhs.size()];
             _e = _b + rhs.size();
             copy(rhs._b, rhs._e, _b);}
 
-        vector& operator = (const vector& rhs) {
+        vector& operator = (vector rhs) {
+            swap(_b, rhs._b);
+            swap(_e, rhs._e);
+            return *this;
+/*
+            if (*this == rhs)           if (this != &rhs)
+                return *this;
             delete [] _b;
             _b = new T[rhs.size()];
             _e = _b + rhs.size();
             copy(rhs._b, rhs._e, _b);
             return *this;}
-
+*/
+        ~vector () {
+            for (T* i = _b; i != _e; ++i) O(n)
+                _a.destroy(i);
+            _a.deallocate(_b, size());} O(1)
         ...}
 
 int main () {
-    vector<int> x(10, 2);
-    cout << x[3];         // 2
-    x[3] = 4;
+    const vector<int> x(20, 3);
+    const vector<int> y(10, 4);
 
-    const vector<int> y(10, 2);
-    cout << y[3];               // 2
-//  y[3] = 4;                   // doesn't compile
-
-    const vector<int> z(20, 3);
-    const vector<int> t = z;    // copy consttructor
-
-    x = z; // copy assignment operator
+    y = y; // copy assignment operator
