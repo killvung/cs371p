@@ -125,6 +125,7 @@ sync:
     --include "Consts.c++"                   \
     --include "Classes.c++"                  \
     --include "Arrays.c++"                   \
+    --include "FunctionOverloading.c++"      \
     --exclude "*"                            \
     ../../examples/c++/ examples
 	@rsync -r -t -u -v --delete              \
@@ -166,6 +167,8 @@ sync:
     --include "Vector2.h"                    \
     --include "Memory.h"                     \
     --include "Vector3.c++"                  \
+    --include "Vector3.h"                    \
+    --include "Vector4.c++"                  \
     --exclude "*"                            \
     ../../exercises/c++/ exercises
 	@rsync -r -t -u -v --delete              \

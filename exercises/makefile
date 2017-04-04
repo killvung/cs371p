@@ -13,7 +13,9 @@ FILES :=          \
     Fill          \
     AllOf         \
     RMSE          \
-    Vector1
+    Vector1       \
+    Vector2       \
+    Vector3
 
 ifeq ($(shell uname), Darwin)                                           # Apple
     CXX          := g++
