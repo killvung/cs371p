@@ -126,6 +126,7 @@ sync:
     --include "Classes.c++"                  \
     --include "Arrays.c++"                   \
     --include "FunctionOverloading.c++"      \
+    --include "Move.c++"                     \
     --exclude "*"                            \
     ../../examples/c++/ examples
 	@rsync -r -t -u -v --delete              \
