@@ -64,3 +64,5 @@ int main () {
     vector<int, my_allocator<int>> y; // my_allocator
     allocator<int> a(...);
     vector<int>                    z(10, 2, a);
+
+    x = f(...); // move assignment
