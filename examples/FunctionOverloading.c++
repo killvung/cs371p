@@ -90,8 +90,8 @@ int main () {
     assert(h(ci) == "h(const int&)");
     assert(h(4)  == "h(const int&)");
 
-//  assert(m(i)  == "m(int&&)"); // error: no matching function for call to 'm'
-//  assert(m(ci) == "m(int&&)"); // error: no matching function for call to 'm'
+//  assert(m(i)  == "m(int&&)");      // error: no matching function for call to 'm'
+//  assert(m(ci) == "m(int&&)");      // error: no matching function for call to 'm'
     assert(m(4)  == "m(int&&)");
 
     assert(p(i)  == "p(int&)");
