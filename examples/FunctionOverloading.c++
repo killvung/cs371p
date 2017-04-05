@@ -31,6 +31,11 @@ string h (const int&) {      // l-value or r-value
 
 
 
+string m (int&&) {      // r-value
+    return "m(int&&)";}
+
+
+
 string p (int&) {            // non-const l-value
     return "p(int&)";}
 
@@ -84,6 +89,10 @@ int main () {
     assert(h(i)  == "h(const int&)");
     assert(h(ci) == "h(const int&)");
     assert(h(4)  == "h(const int&)");
+
+//  assert(m(i)  == "m(int&&)"); // error: no matching function for call to 'm'
+//  assert(m(ci) == "m(int&&)"); // error: no matching function for call to 'm'
+    assert(m(4)  == "m(int&&)");
 
     assert(p(i)  == "p(int&)");
     assert(p(ci) == "p(const int&)");
