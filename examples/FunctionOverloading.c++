@@ -21,52 +21,52 @@ string f (int) {              // l-value or r-value
 
 
 
-string g (int&) {            // non-const l-value
+string g (int&) {             // non-const l-value
     return "g(int&)";}
 
 
 
-string h (const int&) {      // l-value or r-value
+string h (const int&) {       // l-value or r-value
     return "h(const int&)";}
 
 
 
-string m (int&&) {      // r-value
+string m (int&&) {            // r-value
     return "m(int&&)";}
 
 
 
-string p (int&) {            // non-const l-value
+string p (int&) {             // non-const l-value
     return "p(int&)";}
 
-string p (const int&) {      // const l-value or r-value
+string p (const int&) {       // const l-value or r-value
     return "p(const int&)";}
 
 
 
-string q (int&) {            // non-const l-value
+string q (int&) {             // non-const l-value
     return "q(int&)";}
 
-string q (int&&) {           // r-value
+string q (int&&) {            // r-value
     return "q(int&&)";}
 
 
 
-string r (const int&) {      // l-value
+string r (const int&) {       // l-value
     return "r(const int&)";}
 
-string r (int&&) {           // r-value
+string r (int&&) {            // r-value
     return "r(int&&)";}
 
 
 
-string s (int&) {            // non-const l-value
+string s (int&) {             // non-const l-value
     return "s(int&)";}
 
-string s (const int&) {      // const l-value
+string s (const int&) {       // const l-value
     return "s(const int&)";}
 
-string s (int&&) {           // r-value
+string s (int&&) {            // r-value
     return "s(int&&)";}
 
 
