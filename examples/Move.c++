@@ -4,6 +4,7 @@
 
 #include <cassert>  // assert
 #include <iostream> // cout, endl
+#include <utility>
 
 using namespace std;
 
@@ -12,17 +13,17 @@ struct A {
     A () {
         cout << "A() ";}
 
-    A (const A& rhs) {
+    A (const A& rhs) {             // copy constructor
         cout << "A(const A&) ";}
 
-    A (A&&) {
+    A (A&&) {                      // move constructor
         cout << "A(A&&) ";}
 
-    A& operator = (const A&) {
+    A& operator = (const A&) {     // copy assignment
         cout << "=(const A&) ";
         return *this;}
 
-    A& operator = (A&&) {
+    A& operator = (A&&) {          // move assignment
         cout << "=(A&&) ";
         return *this;}
 
@@ -31,7 +32,7 @@ struct A {
 
 template <typename T>
 struct B {
-    A<T> _x;
+    A<T> _x;                       // containment
 
     B () :
             _x () {
@@ -51,7 +52,7 @@ struct B {
 
 template <typename T>
 struct C {
-    A<T> _x;
+    A<T> _x;                       // containment
 
     C () :
             _x () {
@@ -78,10 +79,10 @@ struct C {
     ~C() {
         cout << "~C() ";}};
 
-B<int> f (B<int>& z) {
+B<int> f (const B<int>& z) {
     return z;}
 
-C<int> g (C<int>& z) {
+C<int> g (const C<int>& z) {
     return z;}
 
 int main() {
