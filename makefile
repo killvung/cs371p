@@ -212,6 +212,22 @@ sync:
     --include "TestDarwin.out"               \
     --exclude "*"                            \
     ../../projects/c++/darwin/ projects/darwin
+	@rsync -r -t -u -v --delete              \
+    --include "Life.c++"                     \
+    --include "Life.h"                       \
+    --include "RunLifeConway.c++"            \
+    --include "RunLifeConway.in"             \
+    --include "RunLifeConway.out"            \
+    --include "RunLifeFredkin.c++"           \
+    --include "RunLifeFredkin.in"            \
+    --include "RunLifeFredkin.out"           \
+    --include "RunLifeCell.c++"              \
+    --include "RunLifeCell.in"               \
+    --include "RunLifeCell.out"              \
+    --include "TestLife.c++"                 \
+    --include "TestLife.out"                 \
+    --exclude "*"                            \
+    ../../projects/c++/life/ projects/life
 
 test:
 	make clean
