@@ -243,6 +243,8 @@ test:
 	cd projects/allocator; make test
 	@echo
 	cd projects/darwin; make test
+	@echo
+	cd projects/life; make test
 
 versions:
 	which make
