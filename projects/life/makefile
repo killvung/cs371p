@@ -1,22 +1,32 @@
 .DEFAULT_GOAL := test
 
-FILES :=         \
-    .gitignore   \
-    Life.c++     \
-    Life.h       \
-    Life.log     \
-    html         \
-    makefile     \
-    RunLife.c++  \
-    RunLife.in   \
-    RunLife.out  \
-    TestLife.c++ \
+FILES :=               \
+    .gitignore         \
+    html               \
+    Life.c++           \
+    Life.h             \
+    Life.log           \
+    makefile           \
+    RunLifeConway.c++  \
+    RunLifeConway.in   \
+    RunLifeConway.out  \
+    RunLifeFredkin.c++ \
+    RunLifeFredkin.in  \
+    RunLifeFredkin.out \
+    RunLifeCell.c++    \
+    RunLifeCell.in     \
+    RunLifeCell.out    \
+    TestLife.c++       \
     TestLife.out
 
 # uncomment these:
-#    .travis.yml                         \
-#    darwin-tests/GitHubID-RunLife.in  \
-#    darwin-tests/GitHubID-RunLife.out \
+#    .travis.yml                            \
+#    life-tests/GitHubID-RunLifeConway.in   \
+#    life-tests/GitHubID-RunLifeConway.out  \
+#    life-tests/GitHubID-RunLifeFredkin.in  \
+#    life-tests/GitHubID-RunLifeFredkin.out \
+#    life-tests/GitHubID-RunLifeCell.in     \
+#    life-tests/GitHubID-RunLifeCell.out    \
 
 ifeq ($(shell uname), Darwin)                                           # Apple
     CXX          := g++
@@ -72,9 +82,9 @@ else                                                                    # UTCS
     CLANG-FORMAT := clang-format-3.8
 endif
 
-.PHONY: darwin-tests
-darwin-tests:
-	git clone https://github.com/cs371pt-spring-2017/darwin-tests.git
+.PHONY: life-tests
+life-tests:
+	git clone https://github.com/cs371pt-spring-2017/life-tests.git
 
 html: Doxyfile
 	doxygen Doxyfile
@@ -90,27 +100,45 @@ Doxyfile:
 # EXTRACT_PRIVATE        = YES
 # EXTRACT_STATIC         = YES
 
-RunLife:
-	$(CXX) $(CXXFLAGS) Life.c++ RunLife.c++ -o RunLife
-	-$(CLANG-CHECK) -extra-arg=-std=c++11          Life.c++     --
-	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze Life.c++     --
-	-$(CLANG-CHECK) -extra-arg=-std=c++11          RunLife.c++  --
-	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze RunLife.c++  --
+RunLifeConway:
+	$(CXX) $(CXXFLAGS) RunLifeConway.c++ -o RunLifeConway
+	-$(CLANG-CHECK) -extra-arg=-std=c++11          RunLifeConway.c++  --
+	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze RunLifeConway.c++  --
 
-.PHONY: RunLife.tmp
-RunLife.tmp: RunLife
-	./RunLife < RunLife.in > RunLife.tmp
-	diff RunLife.tmp RunLife.out
+RunLifeFredkin:
+	$(CXX) $(CXXFLAGS) RunLifeFredkin.c++ -o RunLifeFredkin
+	-$(CLANG-CHECK) -extra-arg=-std=c++11          RunLifeFredkin.c++  --
+	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze RunLifeFredkin.c++  --
+
+RunLifeCell:
+	$(CXX) $(CXXFLAGS) RunLifeCell.c++ -o RunLifeCell
+	-$(CLANG-CHECK) -extra-arg=-std=c++11          RunLifeCell.c++  --
+	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze RunLifeCell.c++  --
+
+.PHONY: RunLifeConway.tmp
+RunLifeConway.tmp: RunLifeConway
+	./RunLifeConway < RunLifeConway.in > RunLifeConway.tmp
+	diff RunLifeConway.tmp RunLifeConway.out
+
+.PHONY: RunLifeFredkin.tmp
+RunLifeFredkin.tmp: RunLifeFredkin
+	./RunLifeFredkin < RunLifeFredkin.in > RunLifeFredkin.tmp
+	diff RunLifeFredkin.tmp RunLifeFredkin.out
+
+.PHONY: RunLifeCell.tmp
+RunLifeCell.tmp: RunLifeCell
+	./RunLifeCell < RunLifeCell.in > RunLifeCell.tmp
+	diff RunLifeCell.tmp RunLifeCell.out
 
 TestLife:
-	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) Life.c++ TestLife.c++ -o TestLife $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) TestLife.c++ -o TestLife $(LDFLAGS)
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          TestLife.c++ --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze TestLife.c++ --
 
 .PHONY: TestLife.tmp
 TestLife.tmp: TestLife
-	$(VALGRIND) ./TestLife                                       >  TestLife.tmp 2>&1
-	-$(GCOV) -b Life.c++     | grep -A 5 "File 'Life.c++'"     >> TestLife.tmp
+	$(VALGRIND) ./TestLife                                     >  TestLife.tmp 2>&1
+	-$(GCOV) -b TestLife.c++ | grep -A 5 "File 'Life.h'"       >> TestLife.tmp
 	-$(GCOV) -b TestLife.c++ | grep -A 5 "File 'TestLife.c++'" >> TestLife.tmp
 	cat TestLife.tmp
 
@@ -140,8 +168,12 @@ clean:
 	rm -f  *.gcno
 	rm -f  *.gcov
 	rm -f  *.plist
-	rm -f  RunLife
-	rm -f  RunLife.tmp
+	rm -f  RunLifeConway
+	rm -f  RunLifeConway.tmp
+	rm -f  RunLifeFredkin
+	rm -f  RunLifeFredkin.tmp
+	rm -f  RunLifeCell
+	rm -f  RunLifeCell.tmp
 	rm -f  TestLife
 	rm -f  TestLife.tmp
 	rm -rf *.dSYM
@@ -151,9 +183,10 @@ config:
 	git config -l
 
 format:
-	$(CLANG-FORMAT) -i Life.c++
 	$(CLANG-FORMAT) -i Life.h
-	$(CLANG-FORMAT) -i RunLife.c++
+	$(CLANG-FORMAT) -i RunLifeConway.c++
+	$(CLANG-FORMAT) -i RunLifeFredkin.c++
+	$(CLANG-FORMAT) -i RunLifeCell.c++
 	$(CLANG-FORMAT) -i TestLife.c++
 
 scrub:
@@ -169,7 +202,7 @@ status:
 	git remote -v
 	git status
 
-test: html Life.log RunLife.tmp TestLife.tmp darwin-tests
+test: html Life.log RunLifeConway.tmp RunLifeFredkin.tmp RunLifeCell.tmp TestLife.tmp life-tests
 	ls -al
 	make check
 
