@@ -3,7 +3,6 @@
 FILES :=               \
     .gitignore         \
     html               \
-    Life.c++           \
     Life.h             \
     Life.log           \
     makefile           \
