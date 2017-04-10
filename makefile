@@ -226,7 +226,7 @@ sync:
     --include "RunLifeCell.out"              \
     --include "TestLife.c++"                 \
     --include "TestLife.out"                 \
-    --exclude "*"                            \
+    --exclude "*"                             \
     ../../projects/c++/life/ projects/life
 
 test:
