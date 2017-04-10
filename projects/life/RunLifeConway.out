@@ -51,6 +51,22 @@ Generation = 1, Population = 4.
 ..*..
 .....
 
+*** Life<Conway> 5x6 ***
+
+Generation = 0, Population = 6.
+......
+..**..
+.*..*.
+..**..
+......
+
+Generation = 1, Population = 6.
+......
+..**..
+.*..*.
+..**..
+......
+
 *** Life<Conway> 6x6 ***
 
 Generation = 0, Population = 5.
@@ -91,20 +107,4 @@ Generation = 4, Population = 5.
 ...*..
 ....*.
 ..***.
-......
-
-*** Life<Conway> 6x6 ***
-
-Generation = 0, Population = 6.
-......
-..**..
-.*..*.
-..**..
-......
-
-Generation = 1, Population = 6.
-......
-..**..
-.*..*.
-..**..
 ......
