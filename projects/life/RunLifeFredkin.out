@@ -1,4 +1,4 @@
-*** Life<Fredkin> 9x9 ***
+*** Life<FredkinCell> 9x9 ***
 
 Generation = 0, Population = 3.
 ---------
@@ -16,7 +16,7 @@ Generation = 1, Population = 10.
 ---------
 ---------
 ---000---
---00-00--
+--01-10--
 ---000---
 ---------
 ---------
@@ -27,7 +27,7 @@ Generation = 2, Population = 12.
 ---------
 ---000---
 ---------
--011-110-
+-012-210-
 ---------
 ---000---
 ---------
@@ -36,15 +36,15 @@ Generation = 2, Population = 12.
 Generation = 3, Population = 30.
 ---------
 ---000---
---00-00--
+--01-10--
 -00-0-00-
-00-2-2-00
+01-3-3-10
 -00-0-00-
---00-00--
+--01-10--
 ---000---
 ---------
 
-*** Life<Fredkin> 10x10 ***
+*** Life<FredkinCell> 10x10 ***
 
 Generation = 0, Population = 4.
 ----------
@@ -70,7 +70,7 @@ Generation = 1, Population = 8.
 ----------
 ----------
 
-Generation = 2, Population = 8.
+Generation = 2, Population = 16.
 ----------
 ----------
 ----00----
@@ -82,7 +82,7 @@ Generation = 2, Population = 8.
 ----------
 ----------
 
-Generation = 3, Population = 8.
+Generation = 3, Population = 16.
 ----------
 ----00----
 ---0--0---

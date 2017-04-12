@@ -127,6 +127,7 @@ sync:
     --include "Arrays.c++"                   \
     --include "FunctionOverloading.c++"      \
     --include "Move.c++"                     \
+    --include "MethodOverriding1.c++"        \
     --exclude "*"                            \
     ../../examples/c++/ examples
 	@rsync -r -t -u -v --delete              \
@@ -171,6 +172,8 @@ sync:
     --include "Vector3.h"                    \
     --include "Vector4.c++"                  \
     --include "Vector4.h"                    \
+    --include "Shapes1.c++"                  \
+    --include "Shapes2.c++"                  \
     --exclude "*"                            \
     ../../exercises/c++/ exercises
 	@rsync -r -t -u -v --delete              \
