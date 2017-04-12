@@ -90,7 +90,7 @@ Doxyfile:
 # EXTRACT_PRIVATE        = YES
 # EXTRACT_STATIC         = YES
 
-RunCollatz:
+RunCollatz: Collatz.h Collatz.c++ RunCollatz.c++
 	$(CXX) $(CXXFLAGS) Collatz.c++ RunCollatz.c++ -o RunCollatz
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          Collatz.c++     --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze Collatz.c++     --
@@ -102,7 +102,7 @@ RunCollatz.tmp: RunCollatz
 	./RunCollatz < RunCollatz.in > RunCollatz.tmp
 	diff RunCollatz.tmp RunCollatz.out
 
-TestCollatz:
+TestCollatz: Collatz.h Collatz.c++ TestCollatz.c++
 	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) Collatz.c++ TestCollatz.c++ -o TestCollatz $(LDFLAGS)
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          TestCollatz.c++ --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze TestCollatz.c++ --

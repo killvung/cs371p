@@ -99,17 +99,17 @@ Doxyfile:
 # EXTRACT_PRIVATE        = YES
 # EXTRACT_STATIC         = YES
 
-RunLifeConway:
+RunLifeConway: Life.h RunLifeConway.c++
 	$(CXX) $(CXXFLAGS) RunLifeConway.c++ -o RunLifeConway
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          RunLifeConway.c++  --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze RunLifeConway.c++  --
 
-RunLifeFredkin:
+RunLifeFredkin: Life.h RunLifeFredkin.c++
 	$(CXX) $(CXXFLAGS) RunLifeFredkin.c++ -o RunLifeFredkin
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          RunLifeFredkin.c++  --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze RunLifeFredkin.c++  --
 
-RunLifeCell:
+RunLifeCell: Life.h RunLifeCell.c++
 	$(CXX) $(CXXFLAGS) RunLifeCell.c++ -o RunLifeCell
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          RunLifeCell.c++  --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze RunLifeCell.c++  --
@@ -129,7 +129,7 @@ RunLifeCell.tmp: RunLifeCell
 	./RunLifeCell < RunLifeCell.in > RunLifeCell.tmp
 	diff RunLifeCell.tmp RunLifeCell.out
 
-TestLife:
+TestLife: Life.h TestLife.c++
 	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) TestLife.c++ -o TestLife $(LDFLAGS)
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          TestLife.c++ --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze TestLife.c++ --

@@ -89,7 +89,7 @@ Doxyfile:
 # EXTRACT_PRIVATE        = YES
 # EXTRACT_STATIC         = YES
 
-RunAllocator:
+RunAllocator: Allocator.h RunAllocator.c++
 	$(CXX) $(CXXFLAGS) RunAllocator.c++ -o RunAllocator
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          RunAllocator.c++  --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze RunAllocator.c++  --
@@ -99,7 +99,7 @@ RunAllocator.tmp: RunAllocator
 	./RunAllocator < RunAllocator.in > RunAllocator.tmp
 	diff RunAllocator.tmp RunAllocator.out
 
-TestAllocator:
+TestAllocator: Allocator.h TestAllocator.c++
 	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) TestAllocator.c++ -o TestAllocator $(LDFLAGS)
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          TestAllocator.c++ --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze TestAllocator.c++ --

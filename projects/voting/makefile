@@ -90,7 +90,7 @@ Doxyfile:
 # EXTRACT_PRIVATE        = YES
 # EXTRACT_STATIC         = YES
 
-RunVoting:
+RunVoting: Voting.h Voting.c++ RunVoting.c++
 	$(CXX) $(CXXFLAGS) Voting.c++ RunVoting.c++ -o RunVoting
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          Voting.c++     --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze Voting.c++     --
@@ -102,7 +102,7 @@ RunVoting.tmp: RunVoting
 	./RunVoting < RunVoting.in > RunVoting.tmp
 	diff RunVoting.tmp RunVoting.out
 
-TestVoting:
+TestVoting: Voting.h Voting.c++ TestVoting.c++
 	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) Voting.c++ TestVoting.c++ -o TestVoting $(LDFLAGS)
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          TestVoting.c++ --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze TestVoting.c++ --

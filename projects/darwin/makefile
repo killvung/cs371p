@@ -90,7 +90,7 @@ Doxyfile:
 # EXTRACT_PRIVATE        = YES
 # EXTRACT_STATIC         = YES
 
-RunDarwin:
+RunDarwin: Darwin.h Darwin.c++ RunDarwin.c++
 	$(CXX) $(CXXFLAGS) Darwin.c++ RunDarwin.c++ -o RunDarwin
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          Darwin.c++     --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze Darwin.c++     --
@@ -102,7 +102,7 @@ RunDarwin.tmp: RunDarwin
 	./RunDarwin < RunDarwin.in > RunDarwin.tmp
 	diff RunDarwin.tmp RunDarwin.out
 
-TestDarwin:
+TestDarwin: Darwin.h Darwin.c++ TestDarwin.c++
 	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) Darwin.c++ TestDarwin.c++ -o TestDarwin $(LDFLAGS)
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          TestDarwin.c++ --
 	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze TestDarwin.c++ --
