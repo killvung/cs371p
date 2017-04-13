@@ -38,7 +38,7 @@ class Shape {
                 _y (rhs._y)
             {}
 */
-          ~Shape () = default;
+        ~Shape () = default;
 /*
         ~Shape ()
             {}
