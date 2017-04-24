@@ -24,11 +24,13 @@ int main () {
     A x;
     x.f(); // statically bound
 
-// dynamic binding in 4 case:
+// static binding in 4 case:
 // 1. an object
 // 2. scope operator
 // 3. constructor
 // 4. destructor
+// 5. final method
+// 6. final class
 
 struct Triangle : Shape {
     Triangle (...) : Shape(...) {...}};
