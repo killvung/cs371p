@@ -178,6 +178,7 @@ sync:
     --include "Shapes2.c++"                  \
     --include "Shapes2.h"                    \
     --include "Shapes3.c++"                  \
+    --include "Shapes3.h"                  \
     --include "Handle1.c++"                  \
     --include "Handle2.c++"                  \
     --include "Handle3.c++"                  \
