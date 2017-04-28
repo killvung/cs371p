@@ -5,16 +5,30 @@
 #ifndef Vector_h
 #define Vector_h
 
-#include <algorithm> // copy, fill
-#include <cstddef>   // ptrdiff_t, size_t
-#include <utility>  // !=, swap
+#include <algorithm>        // copy, equal, fill, swap
+#include <cstddef>          // ptrdiff_t, size_t
+#include <initializer_list> // initializer_list
+#include <stdexcept>        // out_of_range
+#include <utility>          // !=
+
+/*
+namespace std     {
+namespace rel_ops {
+
+template <typename T>
+inline bool operator != (const T& lhs, const T& rhs) {
+    return !(lhs == rhs);}
+
+} // rel_ops
+} // std;
+*/
 
 using std::rel_ops::operator!=;
 
 template <typename T>
 class my_vector {
     friend bool operator == (const my_vector& lhs, const my_vector& rhs) {
-        return (lhs.size() == rhs.size()) && std::equal(lhs.begin(), lhs.begin(), rhs.begin());}
+        return (lhs.size() == rhs.size()) && std::equal(lhs.begin(), lhs.end(), rhs.begin());}
 
     public:
         using value_type      = T;
@@ -51,8 +65,9 @@ class my_vector {
                 _e (_b + rhs.size()) {
             std::copy(rhs._b, rhs._e, _b);}
 
-        my_vector& operator = (my_vector rhs) {
-            swap(rhs);
+        my_vector& operator = (const my_vector& rhs) {
+            my_vector that(rhs);
+            swap(that);
             return *this;}
 
         ~my_vector () {
@@ -63,6 +78,14 @@ class my_vector {
 
         const_reference operator [] (size_type i) const {
             return (*const_cast<my_vector*>(this))[i];}
+
+        reference at (size_type i) {
+            if (i >= size())
+                throw std::out_of_range("my_vector::at index out of range");
+            return (*this)[i];}
+
+        const_reference at (size_type i) const {
+            return const_cast<my_vector*>(this)->at(i);}
 
         iterator begin () {
             return _b;}

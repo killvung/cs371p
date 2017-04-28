@@ -129,6 +129,8 @@ sync:
     --include "Move.c++"                     \
     --include "MethodOverriding1.c++"        \
     --include "MethodOverriding2.c++"        \
+    --include "SharedPtr.c++"                \
+    --include "UniquePtr.c++"                \
     --exclude "*"                            \
     ../../examples/c++/ examples
 	@rsync -r -t -u -v --delete              \
@@ -178,9 +180,9 @@ sync:
     --include "Shapes2.c++"                  \
     --include "Shapes2.h"                    \
     --include "Shapes3.c++"                  \
-    --include "Shapes3.h"                  \
+    --include "Shapes3.h"                    \
     --include "Handle1.c++"                  \
-    --include "Handle1.h"                  \
+    --include "Handle1.h"                    \
     --include "Handle2.c++"                  \
     --include "Handle3.c++"                  \
     --exclude "*"                            \

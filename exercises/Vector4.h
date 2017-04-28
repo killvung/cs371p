@@ -94,7 +94,7 @@ class my_vector {
             my_uninitialized_copy(_a, rhs._b, rhs._e, _b);}
 
         my_vector (my_vector&& rhs) :
-                _a (move(rhs._a)),
+                _a (std::move(rhs._a)),
                 _b (rhs._b),
                 _e (rhs._e) {
             rhs._b = nullptr;
@@ -106,7 +106,7 @@ class my_vector {
             return *this;}
 
         my_vector& operator = (my_vector&& rhs) {
-            my_vector that(move(rhs));
+            my_vector that(std::move(rhs));
             swap(that);
             return *this;}
 

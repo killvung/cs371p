@@ -7,6 +7,7 @@
 #include <algorithm> // equal
 #include <memory>    // allocator
 #include <stdexcept> // out_of_range
+#include <utility>   // move
 #include <vector>    // vector
 
 #include "gtest/gtest.h"
@@ -85,13 +86,6 @@ TYPED_TEST(VectorFixture, test_6) {
     ASSERT_EQ(x, y);}
 
 TYPED_TEST(VectorFixture, test_7) {
-    using vector_type    = typename TestFixture::vector_type;
-    using allocator_type = typename TestFixture::allocator_type;
-
-    const vector_type x(3, 2, allocator_type());
-    ASSERT_TRUE(equal(begin(x), end(x), begin({2, 2, 2})));}
-
-TYPED_TEST(VectorFixture, test_8) {
     using vector_type = typename TestFixture::vector_type;
 
     vector_type x(3);
@@ -102,7 +96,7 @@ TYPED_TEST(VectorFixture, test_8) {
     ASSERT_TRUE(equal(begin(x), end(x), begin({0, 2, 0})));
     ASSERT_THROW(x.at(3), out_of_range);}
 
-TYPED_TEST(VectorFixture, test_9) {
+TYPED_TEST(VectorFixture, test_8) {
     using vector_type = typename TestFixture::vector_type;
 
     const vector_type x(3, 2);
@@ -113,7 +107,7 @@ TYPED_TEST(VectorFixture, test_9) {
     const vector_type y(6, 2);
     ASSERT_TRUE(equal(begin(x), end(x), begin(y)));}
 
-TYPED_TEST(VectorFixture, test_10) {
+TYPED_TEST(VectorFixture, test_9) {
     using vector_type = typename TestFixture::vector_type;
 
     const vector_type x(10, 2);
@@ -126,7 +120,7 @@ TYPED_TEST(VectorFixture, test_10) {
     ASSERT_GT(z, x);
     ASSERT_GE(x, y);}
 
-TYPED_TEST(VectorFixture, test_11) {
+TYPED_TEST(VectorFixture, test_10) {
     using vector_type = typename TestFixture::vector_type;
 
                    vector_type           x(10, 2);
@@ -136,7 +130,7 @@ TYPED_TEST(VectorFixture, test_11) {
     ASSERT_EQ(10, y.size());
     ASSERT_EQ(b,  begin(y));}
 
-TYPED_TEST(VectorFixture, test_12) {
+TYPED_TEST(VectorFixture, test_11) {
     using vector_type = typename TestFixture::vector_type;
 
              vector_type           x(20, 3);
@@ -146,3 +140,10 @@ TYPED_TEST(VectorFixture, test_12) {
     ASSERT_EQ( 0, x.size());
     ASSERT_EQ(20, y.size());
     ASSERT_EQ(b,  begin(y));}
+
+TYPED_TEST(VectorFixture, test_12) {
+    using vector_type    = typename TestFixture::vector_type;
+    using allocator_type = typename TestFixture::allocator_type;
+
+    const vector_type x(3, 2, allocator_type());
+    ASSERT_TRUE(equal(begin(x), end(x), begin({2, 2, 2})));}

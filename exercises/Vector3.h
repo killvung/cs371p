@@ -2,17 +2,16 @@
 // Vector3.h
 // ---------
 
+// http://scottmeyers.blogspot.com/2014/06/the-drawbacks-of-implementing-move.html
+
 #ifndef Vector_h
 #define Vector_h
 
-#include <algorithm>        // equal, lexicographical_compare, swap
+#include <algorithm>        // copy, equal, fill, lexicographical_compare, swap
 #include <cstddef>          // ptrdiff_t, size_t
 #include <initializer_list> // initializer_list
-#include <memory>           // allocator
 #include <stdexcept>        // out_of_range
 #include <utility>          // !=, <=, >, >=
-
-#include "Memory.h"  // my_destroy, my_uninitialized_copy, my_uninitialized_fill
 
 /*
 namespace std     {
@@ -43,7 +42,7 @@ using std::rel_ops::operator<=;
 using std::rel_ops::operator>;
 using std::rel_ops::operator>=;
 
-template <typename T, typename A = std::allocator<T>>
+template <typename T>
 class my_vector {
     friend bool operator == (const my_vector& lhs, const my_vector& rhs) {
         return (lhs.size() == rhs.size()) && std::equal(lhs.begin(), lhs.end(), rhs.begin());}
@@ -52,52 +51,58 @@ class my_vector {
         return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());}
 
     public:
-        using allocator_type  = A;
-        using value_type      = typename allocator_type::value_type;
+        using value_type      = T;
 
-        using size_type       = typename allocator_type::size_type;
-        using difference_type = typename allocator_type::difference_type;
+        using size_type       = std::size_t;
+        using difference_type = std::ptrdiff_t;
 
-        using       pointer   = typename allocator_type::pointer;
-        using const_pointer   = typename allocator_type::const_pointer;
+        using       pointer   =       value_type*;
+        using const_pointer   = const value_type*;
 
-        using       reference = typename allocator_type::reference;
-        using const_reference = typename allocator_type::const_reference;
+        using       reference =       value_type&;
+        using const_reference = const value_type&;
 
-        using       iterator  = typename allocator_type::pointer;
-        using const_iterator  = typename allocator_type::const_pointer;
+        using       iterator  =       pointer;
+        using const_iterator  = const_pointer;
 
     private:
-        A       _a;
         pointer _b;
         pointer _e;
 
     public:
-        explicit my_vector (size_type s = 0, const_reference v = T(), const A& a = A()) :
-                _a (a),
-                _b (s == 0 ? nullptr : _a.allocate(s)),
-                _e (s == 0 ? nullptr : _b + s) {
-            my_uninitialized_fill(_a, _b, _e, v);}
+        explicit my_vector (size_type s = 0, const_reference v = T()) :
+                _b ((s == 0) ? nullptr : new T[s]),
+                _e (_b + s) {
+            std::fill(_b, _e, v);}
 
-        my_vector (std::initializer_list<T> rhs, const A& a = A()) :
-                _a (a),
-                _b (rhs.size() == 0 ? nullptr : _a.allocate(rhs.size())),
-                _e (rhs.size() == 0 ? nullptr : _b + rhs.size()) {
-            my_uninitialized_copy(_a, rhs.begin(), rhs.end(), _b);}
+        my_vector (std::initializer_list<T> rhs) :
+                _b ((rhs.size() == 0) ? nullptr : new T[rhs.size()]),
+                _e (_b + rhs.size()) {
+            std::copy(rhs.begin(), rhs.end(), _b);}
 
         my_vector (const my_vector& rhs) :
-                _a (rhs._a),
-                _b (rhs.size() == 0 ? nullptr : _a.allocate(rhs.size())),
-                _e (rhs.size() == 0 ? nullptr : _b + rhs.size()) {
-            my_uninitialized_copy(_a, rhs._b, rhs._e, _b);}
+                _b (rhs.size() == 0 ? nullptr : new T[rhs.size()]),
+                _e (_b + rhs.size()) {
+            std::copy(rhs._b, rhs._e, _b);}
 
-        my_vector& operator = (my_vector rhs) {
-            swap(rhs);
+        my_vector (my_vector&& rhs) :
+                _b (rhs._b),
+                _e (rhs._e) {
+            rhs._b = nullptr;
+            rhs._e = nullptr;}
+
+        my_vector& operator = (const my_vector& rhs) {
+            my_vector that(rhs);
+            swap(that);
+            return *this;}
+
+        my_vector& operator = (my_vector&& rhs) {
+            my_vector that(std::move(rhs));
+            swap(that);
             return *this;}
 
         ~my_vector () {
-            my_destroy(_a, _b, _e);
-            _a.deallocate(_b, size());}
+            delete [] _b;}
 
         reference operator [] (size_type i) {
             return _b[i];}
@@ -129,7 +134,6 @@ class my_vector {
             return _e - _b;}
 
         void swap (my_vector& rhs) {
-            std::swap(_a, rhs._a);
             std::swap(_b, rhs._b);
             std::swap(_e, rhs._e);}};
 

@@ -78,3 +78,25 @@ TYPED_TEST(VectorFixture, test_6) {
     y = x;
     ASSERT_NE(begin(x), begin(y));
     ASSERT_EQ(x, y);}
+
+TYPED_TEST(VectorFixture, test_7) {
+    using vector_type = typename TestFixture::vector_type;
+
+    vector_type x(3);
+    ASSERT_EQ(3, x.size());
+    ASSERT_TRUE(equal(begin(x), end(x), begin({0, 0, 0})));
+    ASSERT_EQ(0, x.at(1));
+    x.at(1) = 2;
+    ASSERT_TRUE(equal(begin(x), end(x), begin({0, 2, 0})));
+    ASSERT_THROW(x.at(3), out_of_range);}
+
+TYPED_TEST(VectorFixture, test_8) {
+    using vector_type = typename TestFixture::vector_type;
+
+    const vector_type x(3, 2);
+    ASSERT_EQ(3, x.size());
+    ASSERT_TRUE(equal(begin(x), end(x), begin({2, 2, 2})));
+    ASSERT_EQ(2, x.at(1));
+    // x.at(1) = 3;                                         // error: read-only variable is not assignable
+    const vector_type y(6, 2);
+    ASSERT_TRUE(equal(begin(x), end(x), begin(y)));}
