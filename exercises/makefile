@@ -16,7 +16,13 @@ FILES :=          \
     Vector1       \
     Vector2       \
     Vector3       \
-    Vector4
+    Vector4       \
+    Shapes1       \
+    Shapes2       \
+    Shapes3       \
+    Handle1       \
+    Handle2       \
+    UniquePtr
 
 ifeq ($(shell uname), Darwin)                                           # Apple
     CXX          := g++
