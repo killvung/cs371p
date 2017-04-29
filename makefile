@@ -183,6 +183,7 @@ sync:
     --include "Handle1.c++"                  \
     --include "Handle1.h"                    \
     --include "Handle2.c++"                  \
+    --include "Handle2.h"                    \
     --include "UniquePtr.c++"                \
     --include "UniquePtr.h"                  \
     --include "SharedPtr.c++"                \
