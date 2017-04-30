@@ -47,12 +47,12 @@ class Handle {
                 _p ((rhs._p == nullptr) ? nullptr : rhs._p->clone())
             {}
 
-        ~Handle () {
-            delete _p;}
-
-        Handle& operator = (Handle rhs) {
+       Handle& operator = (Handle rhs) {
             swap(rhs);
             return *this;}
+
+        ~Handle () {
+            delete _p;}
 
         void swap (Handle& rhs) {
             std::swap(_p, rhs._p);}};

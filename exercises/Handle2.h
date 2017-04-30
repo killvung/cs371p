@@ -34,12 +34,12 @@ class Handle {
                 _p ((rhs._p == nullptr) ? nullptr : rhs._p->clone())
             {}
 
-        ~Handle () {
-            delete _p;}
-
         Handle& operator = (Handle that) {
             swap(that);
             return *this;}
+
+        ~Handle () {
+            delete _p;}
 
         reference operator * () {
             assert(_p != nullptr);
