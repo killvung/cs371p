@@ -185,6 +185,7 @@ sync:
     --include "Handle2.c++"                  \
     --include "Handle2.h"                    \
     --include "UniquePtr.c++"                \
+    --include "UniquePtr.h"                  \
     --include "SharedPtr.c++"                \
     --include "Handle3.c++"                  \
     --exclude "*"                            \
