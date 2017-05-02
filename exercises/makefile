@@ -21,7 +21,8 @@ FILES :=          \
     Shapes2       \
     Shapes3       \
     Handle1       \
-    Handle2
+    Handle2       \
+    UniquePtr
 
 ifeq ($(shell uname), Darwin)                                           # Apple
     CXX          := g++
