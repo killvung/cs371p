@@ -187,7 +187,9 @@ sync:
     --include "UniquePtr.c++"                \
     --include "UniquePtr.h"                  \
     --include "SharedPtr.c++"                \
+    --include "SharedPtr.h"                  \
     --include "Handle3.c++"                  \
+    --include "Handle3.h"                    \
     --exclude "*"                            \
     ../../exercises/c++/ exercises
 	@rsync -r -t -u -v --delete              \
