@@ -33,12 +33,12 @@ class my_vector {
     public:
         explicit my_vector (size_type s = 0, const_reference v = T()) :
                 _b ((s == 0) ? nullptr : new T[s]),
-                _e (_b + s) {
+                _e ((s == 0) ? nullptr : _b + s) {
             std::fill(_b, _e, v);}
 
         my_vector (std::initializer_list<T> rhs) :
                 _b ((rhs.size() == 0) ? nullptr : new T[rhs.size()]),
-                _e (_b + rhs.size()) {
+                _e ((rhs.size() == 0) ? nullptr : _b + rhs.size()) {
             std::copy(rhs.begin(), rhs.end(), _b);}
 
                    my_vector  (const my_vector&) = default;

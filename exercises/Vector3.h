@@ -66,30 +66,27 @@ class my_vector {
         using const_iterator  = const_pointer;
 
     private:
-        pointer _b;
-        pointer _e;
+        pointer _b = nullptr;
+        pointer _e = nullptr;
 
     public:
         explicit my_vector (size_type s = 0, const_reference v = T()) :
                 _b ((s == 0) ? nullptr : new T[s]),
-                _e (_b + s) {
+                _e ((s == 0) ? nullptr : _b + s) {
             std::fill(_b, _e, v);}
 
         my_vector (std::initializer_list<T> rhs) :
                 _b ((rhs.size() == 0) ? nullptr : new T[rhs.size()]),
-                _e (_b + rhs.size()) {
+                _e ((rhs.size() == 0) ? nullptr : _b + rhs.size()) {
             std::copy(rhs.begin(), rhs.end(), _b);}
 
         my_vector (const my_vector& rhs) :
-                _b (rhs.size() == 0 ? nullptr : new T[rhs.size()]),
-                _e (_b + rhs.size()) {
+                _b ((rhs.size() == 0) ? nullptr : new T[rhs.size()]),
+                _e ((rhs.size() == 0) ? nullptr : _b + rhs.size()) {
             std::copy(rhs._b, rhs._e, _b);}
 
-        my_vector (my_vector&& rhs) :
-                _b (rhs._b),
-                _e (rhs._e) {
-            rhs._b = nullptr;
-            rhs._e = nullptr;}
+        my_vector (my_vector&& rhs) {
+            swap(rhs);}
 
         my_vector& operator = (const my_vector& rhs) {
             my_vector that(rhs);
